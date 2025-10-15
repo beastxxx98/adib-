@@ -44,17 +44,17 @@ GENRES = ['blues', 'classical', 'country', 'disco', 'hiphop',
 
 # ------------------ AUDIO PROCESSING ------------------
 import torch
-import torchaudio
+import torch.nn as nn
 import torch.nn.functional as F
-from torchvision.models import resnet18
-# --- Audio loading ---
-# --- Load ResNet-18 and remove final classifier ---
-resnet_model = resnet18(pretrained=True)
+import torchaudio
+from torchvision.models import resnet18, ResNet18_Weights
+
+weights = ResNet18_Weights.DEFAULT
+resnet_model = resnet18(weights=weights)
 resnet_model.fc = nn.Identity()  # output embeddings instead of classification
 resnet_model.eval()  # set to eval mode
 
-# --- Define a simple AST-like model (placeholder) ---
-# Replace this with your actual pretrained AST model
+# --- Simple AST-like model (placeholder) ---
 class SimpleAST(nn.Module):
     def __init__(self, input_channels=1, embedding_dim=512):
         super().__init__()
@@ -75,12 +75,11 @@ class SimpleAST(nn.Module):
 ast_model = SimpleAST()
 ast_model.eval()
 
-# --- Define final classifier (fusion of embeddings) ---
-# ResNet embedding dim = 512, AST embedding dim = 512 → fused dim = 1024
+# --- Final classifier (fusion of embeddings) ---
 final_fc = nn.Linear(1024, len(GENRES))
-final_fc.eval()
+final_fc.train()  # make trainable
 
-# --- Audio loading function ---
+# --- Audio loading ---
 def load_audio(file_path):
     waveform, sr = torchaudio.load(file_path)
     if sr != 16000:
@@ -91,7 +90,7 @@ def load_audio(file_path):
 # --- ResNet preprocessing ---
 def audio_to_resnet_spec(waveform):
     mel_spec = torchaudio.transforms.MelSpectrogram(
-        sample_rate=16000, n_mels=128
+        sample_rate=16000, n_fft=1024, hop_length=512, n_mels=128
     )(waveform)
     mel_spec_db = torchaudio.transforms.AmplitudeToDB()(mel_spec)
     mel_spec_db = F.interpolate(mel_spec_db.unsqueeze(0), size=(224, 224))
@@ -99,7 +98,7 @@ def audio_to_resnet_spec(waveform):
     return mel_spec_db
 
 # --- AST preprocessing ---
-def ast_preprocess(waveform, sample_rate=16000, n_mels=128, target_frames=512):
+def ast_preprocess(waveform, sample_rate=16000, n_mels=64, target_frames=512):
     mel_spec = torchaudio.transforms.MelSpectrogram(
         sample_rate=sample_rate, n_fft=1024, hop_length=320, n_mels=n_mels
     )(waveform)
@@ -112,7 +111,7 @@ def ast_preprocess(waveform, sample_rate=16000, n_mels=128, target_frames=512):
         mel_spec_db = mel_spec_db[:, :, :target_frames]
     return mel_spec_db.unsqueeze(0)  # shape: (1,1,n_mels,target_frames)
 
-# --- Predict genre function ---
+# --- Predict genre ---
 def predict_genre(audio_path, device='cpu'):
     waveform = load_audio(audio_path).to(device)
 
@@ -135,6 +134,7 @@ def predict_genre(audio_path, device='cpu'):
         idx = torch.argmax(out, dim=1).item()
 
     return GENRES[idx]
+
 
 # ------------------ ROUTES ------------------
 @app.route('/')
