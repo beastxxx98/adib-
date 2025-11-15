@@ -1,0 +1,65 @@
+.logout-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 90vh;
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  color: #fff;
+  font-family: "Poppins", sans-serif;
+  text-align: center;
+  transition: all 0.3s ease-in-out;
+}
+
+.logout-card {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 40px 60px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  max-width: 400px;
+  text-align: center;
+}
+
+.logout-card h2 {
+  font-size: 28px;
+  margin-bottom: 10px;
+  color: #fff;
+}
+
+.logout-card p {
+  color: #d1d1d1;
+  margin-bottom: 20px;
+  font-size: 16px;
+}
+
+.logout-button {
+  background: #ff4b2b;
+  border: none;
+  color: white;
+  padding: 12px 25px;
+  border-radius: 30px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.logout-button:hover {
+  background: #ff6b4a;
+  transform: scale(1.05);
+}
+
+.logout-footer {
+  margin-top: 20px;
+  font-size: 14px;
+  color: #aaa;
+}
+
+.logout-footer a {
+  color: #00c6ff;
+  text-decoration: none;
+}
+
+.logout-footer a:hover {
+  text-decoration: underline;
+}
