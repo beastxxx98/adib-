@@ -1,0 +1,149 @@
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: #f9fafb;
+  margin: 0;
+  padding: 0;
+}
+
+/* ✅ Main container */
+.habit-page {
+  max-width: 600px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.1);
+}
+
+/* ✅ Header */
+.habit-page h2 {
+  text-align: center;
+  font-size: 26px;
+  margin-bottom: 25px;
+  color: #2e7d32; /* green accent */
+}
+
+/* ✅ Add Habit Form */
+.add-habit {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.add-habit input,
+.add-habit select {
+  padding: 12px;
+  border: 1px solid #c8e6c9;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.add-habit input:focus,
+.add-habit select:focus {
+  outline: none;
+  border: 1px solid #43a047;
+}
+
+.add-habit button {
+  padding: 12px;
+  background: #43a047;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s;
+}
+
+.add-habit button:hover {
+  background: #2e7d32;
+  transform: scale(1.05);
+}
+
+/* ✅ Habit List */
+.habit-list {
+  margin-top: 20px;
+}
+
+.habit-list h3 {
+  margin: 0;
+}
+
+.habit-card {
+  background: #f1f8e9;
+  border: 1px solid #c5e1a5;
+  border-radius: 10px;
+  padding: 16px;
+  margin-bottom: 15px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: transform 0.15s ease, box-shadow 0.2s ease;
+}
+
+.habit-card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.habit-card h3 {
+  font-size: 18px;
+  color: #2e7d32;
+  margin-bottom: 5px;
+}
+
+.habit-card p {
+  font-size: 14px;
+  color: #555;
+  margin: 2px 0;
+}
+
+/* ✅ Buttons inside habit card */
+.habit-card button {
+  gap: 10px;
+  padding: 8px 8px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 14px;
+  transition: 0.2s;
+}
+
+/* Green for complete */
+.habit-card button:first-child {
+  background: #43a047;
+  color: white;
+}
+
+.habit-card button:first-child:hover {
+  background: #2e7d32;
+}
+
+/* Blue for edit */
+.habit-card button:nth-child(2) {
+  background: #1e88e5;
+  color: white;
+}
+
+.habit-card button:nth-child(2):hover {
+  background: #1565c0;
+}
+
+/* Red for delete */
+.habit-card button:last-child {
+  background: #e53935;
+  color: white;
+}
+
+.habit-card button:last-child:hover {
+  background: #b71c1c;
+}
+
+/* ✅ Empty state */
+.no-tasks {
+  text-align: center;
+  color: #888;
+  margin-top: 10px;
+  font-style: italic;
+}

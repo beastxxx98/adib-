@@ -1,0 +1,99 @@
+.productivity-page {
+  background: #ffffff;
+  box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.1);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.productivity-page h2 {
+  text-align: center;
+  margin-bottom: 1px;
+  color: #2c3e50;
+}
+
+.stats {
+  text-align: center;
+  margin-bottom: 25px;
+  font-size: 16px;
+  color: #333;
+}
+
+.usage-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 25px;
+}
+
+.usage-form input {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 14px;
+  transition: border 0.2s ease;
+}
+
+.usage-form input:focus {
+  border: 1px solid #0077ff;
+  outline: none;
+}
+
+.usage-form button {
+  padding: 12px;
+  background: #0077ff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.2s ease, transform 0.15s ease;
+}
+
+.usage-form button:hover {
+  background: #005ecc;
+  transform: scale(1.05);
+}
+
+/* Custom Bar Styles */
+.chart-box {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+  margin: 25px 0;
+  padding: 15px;
+  background: #f3f3f3;
+  border-radius: 12px;
+}
+
+.bar-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.bar-fill {
+  width: 50px;
+  border-radius: 12px 12px 0 0;
+  transition: height 0.3s ease;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+.bar-container p {
+  margin: 5px 0 0 0;
+  font-size: 14px;
+  text-align: center;
+}
+
+/* Suggestions */
+.suggestions h3 {
+  color: #27ae60;
+  margin-bottom: 10px;
+}
+
+.suggestions ul {
+  padding-left: 20px;
+}
+
+.suggestions li {
+  margin-bottom: 8px;
+  font-size: 15px;
+}
